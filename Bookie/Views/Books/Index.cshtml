@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Bookie.Models.Book>
+
+@{
+    ViewBag.Title = "Index";
+}
+<br />
+<h2>Available books:</h2>
+
+<p><button type="button" class="btn btn-outline-secondary" style="text-decoration: none;">@Html.ActionLink("Create new", "Create", null, new { style = "text-decoration:none;" })</button></p>
+
+<table id="booksTable" class="table">
+    <thead>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+        <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageURL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Genre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Language)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img src="@item.ImageURL" style="max-width:100px" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rating)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)$
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Genre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Language)
+                </td>
+                <td style="width:170px">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { style = "text-decoration:none;" }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }, new { style = "text-decoration:none;" }) |
+                    <button class="btn js-delete" data-book-id="@item.Id">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
